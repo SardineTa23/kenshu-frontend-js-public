@@ -1,5 +1,8 @@
 # kenshu-frontend-js
 
+
+Github-page https://k-iwashita-prtimes.github.io/kenshu-frontend-js-public/
+
 # 前置き 
 
 まず各項目の `./README.md` の「内容」と「ねらい」、 `/example/index.html` をブラウザで見て、演習内容を確認してください。  
