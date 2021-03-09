@@ -11,6 +11,7 @@ const obj2 = {
 console.log(obj1);
 console.log(obj2);
 
-const result = { ...obj1, ...obj2};
+// const result = { ...obj1, ...obj2};
+const result = Object.assign(obj1, obj2);
 
 console.log(result);
