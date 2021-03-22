@@ -28,13 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
         //   順番入れ替えÏ
         list.appendChild(item);
         // 打ち消しのためのidを外す
-        nextItem.setAttribute("id", "");
+        nextItem.removeAttribute("id", "reset-left");
       }, 300);
     } else {
       item.setAttribute("id", "reset-right");
       setTimeout(() => {
         list.insertBefore(item, list.children[0]);
-        item.setAttribute("id", "");
+        item.removeAttribute("id", "reset-right");
       }, 300);
     }
   }
