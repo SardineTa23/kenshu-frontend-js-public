@@ -31,13 +31,27 @@
   height: inherit;
   width: auto;
 }
-.list.is-transition {
+
+
+/* .list.is-transition {
   transition: margin-left .3s;
-}
+} */
 .item {
   width:400px;
   height: inherit;
+  transition: all 0.3s;
 }
+
+.item:last-child {
+  position: absolute;
+  right: 400px;
+}
+
+.item:nth-child(2) {
+  position: absolute;
+  left: 400px;
+}
+
 .img {
   width:inherit;
   height: inherit;
@@ -55,4 +69,12 @@
 .next:hover {
   background: #eee;
   cursor: pointer;
+}
+
+#reset-left {
+  left: 0px;
+}
+
+#reset-right {
+  right: 0px;
 }
