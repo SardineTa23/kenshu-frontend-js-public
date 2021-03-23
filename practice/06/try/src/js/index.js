@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const nameText = document.querySelector("#name-text");
   const wrapper = document.querySelector("#text-wrapper");
 
-  form.button.addEventListener("click", () => {
+  form.addEventListener("submit", (event) => {
     wrapper.classList.add("is-active");
     genderText.textContent = form.gender.value;
     nameText.textContent = form.name.value;
+    event.preventDefault();
   });
 });
