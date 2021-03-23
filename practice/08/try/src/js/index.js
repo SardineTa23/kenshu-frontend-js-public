@@ -6,15 +6,22 @@ document.addEventListener("DOMContentLoaded", () => {
       return res.json();
     })
     .then((json) => {
-      List.innerHTML = jsonToHtmlElement(json);
+      jsonToHtmlElement(json, List);
     })
     .catch((error) => {
-      console.log("失敗");
+      console.log(error);
     });
 });
 
-function jsonToHtmlElement(json) {
-  return json.reduce((acc, curr) => {
-    return `${acc}<li><h3>${curr.title}</h3><p>${curr.body}</p></li>`;
-  }, "");
+function jsonToHtmlElement(json, List) {
+  Array.prototype.forEach.call(json, (e) => {
+    let li = document.createElement("li");
+    let h3 = document.createElement("h3");
+    let p = document.createElement("p");
+    p.textContent = `${e.body}`;
+    h3.textContent = `${e.title}`;
+    li.appendChild(h3);
+    li.appendChild(p);
+    List.appendChild(li);
+  });
 }
