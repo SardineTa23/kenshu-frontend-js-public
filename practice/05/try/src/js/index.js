@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const text = document.querySelector("#text");
 
   input.addEventListener("keyup", (event) => {
-    if (event.target.value.includes('yes')) {
-      text.innerHTML = "yes";
+    if (event.currentTarget.value.includes("yes")) {
+      text.textContent = event.currentTarget.value;
     } else {
-      text.innerHTML = "";
+      text.textCOntent = "a";
     }
   });
 });
