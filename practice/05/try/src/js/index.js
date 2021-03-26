@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.currentTarget.value.includes("yes")) {
       text.textContent = event.currentTarget.value;
     } else {
-      text.textCOntent = "a";
+      text.textContent = "";
     }
   });
 });
