@@ -1,10 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const MainImg = document.querySelector(".main-img");
-  const Items = document.querySelectorAll(".thumb-item");
-  const Imgs = [];
-  Items.forEach((el) => {
-    Imgs.push(el.querySelector(".thumb-item-img"));
-  });
+  const Imgs = document.querySelectorAll(".thumb-item-img")
   Imgs.forEach((el) => {
     el.addEventListener("mouseover", (event) => {
       removeIsActive(Imgs);
