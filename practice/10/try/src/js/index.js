@@ -15,9 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
       isTransitioning.transition = "pending";
       // 処理が完了したらIsTransitionをfinishへ戻す
       changeOrder(firstItem, true).then(setIsTransition);
-    } else {
-      // pendgingの際はなにもしない。
-      return;
     }
   });
 
@@ -28,9 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isTransitioning.transition === "finished") {
       isTransitioning.transition = "pending";
       changeOrder(lastItem, false).then(setIsTransition);
-    } else {
-      // pendgingの際はなにもしない。
-      return;
     }
   });
 
@@ -42,22 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
       nextItem.setAttribute("id", "reset-left");
       //   transitionのための遅延処理
       return new Promise(function (resolve) {
-        setTimeout(() => {
-          //   順番入れ替え
+        nextItem.addEventListener("transitionend", () => {
           list.appendChild(item);
-          // 打ち消しのためのidを外す
           nextItem.removeAttribute("id", "reset-left");
           resolve();
-        }, 300);
+        });
       });
     } else {
       item.setAttribute("id", "reset-right");
       return new Promise(function (resolve) {
-        setTimeout(() => {
+        item.addEventListener("transitionend", () => {
           list.insertBefore(item, list.children[0]);
           item.removeAttribute("id", "reset-right");
           resolve();
-        }, 300);
+        });
       });
     }
   }
