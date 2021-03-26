@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //   nextをクリックした時
   next.addEventListener("click", () => {
     const firstItem = list.children[0];
-    // transitionがpendingでなければ処理へ
+    // transitionがfinishedなら処理へ
     if (isTransitioning.transition === "finished") {
       isTransitioning.transition = "pending";
       // 処理が完了したらIsTransitionをfinishへ戻す
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //   prevをクリックした時
   prev.addEventListener("click", () => {
     const lastItem = list.children[2];
-    // transitionがpendingでなければ処理へ
+    // transitionがfinishedなら処理へ
     if (isTransitioning.transition === "finished") {
       isTransitioning.transition = "pending";
       changeOrder(lastItem, false).then(setIsTransition);
