@@ -10,28 +10,27 @@ document.addEventListener("DOMContentLoaded", () => {
   //   nextをクリックした時
   next.addEventListener("click", () => {
     const firstItem = list.children[0];
-    // transitionが進行中でなければ処理へ
+    // transitionがpendingでなければ処理へ
     if (isTransitioning.transition === "finished") {
       isTransitioning.transition = "pending";
-      changeOrder(firstItem, true).then((v) => {
-        isTransitioning.transition = "finished";
-      });
+      // 処理が完了したらIsTransitionをfinishへ戻す
+      changeOrder(firstItem, true).then(setIsTransition);
     } else {
-      return null;
+      // pendgingの際はなにもしない。
+      return;
     }
   });
 
   //   prevをクリックした時
   prev.addEventListener("click", () => {
     const lastItem = list.children[2];
-    // transitionが進行中でなければ処理へ
+    // transitionがpendingでなければ処理へ
     if (isTransitioning.transition === "finished") {
       isTransitioning.transition = "pending";
-      changeOrder(lastItem, false).then((v) => {
-        isTransitioning.transition = "finished";
-      });
+      changeOrder(lastItem, false).then(setIsTransition);
     } else {
-      return null;
+      // pendgingの際はなにもしない。
+      return;
     }
   });
 
@@ -48,8 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
           list.appendChild(item);
           // 打ち消しのためのidを外す
           nextItem.removeAttribute("id", "reset-left");
+          resolve();
         }, 300);
-        resolve();
       });
     } else {
       item.setAttribute("id", "reset-right");
@@ -57,9 +56,13 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           list.insertBefore(item, list.children[0]);
           item.removeAttribute("id", "reset-right");
+          resolve();
         }, 300);
-        resolve();
       });
     }
+  }
+
+  function setIsTransition() {
+    isTransitioning.transition = "finished";
   }
 });
